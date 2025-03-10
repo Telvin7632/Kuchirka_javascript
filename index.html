@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторна робота №2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Лабораторна робота №2: Об’єктно-орієнтоване програмування у JavaScript</h1>
+  <p>Відкрийте консоль браузера (натисніть F12 або Ctrl+Shift+I), щоб переглянути результати виконання коду.</p>
+
+  <script>
+
+    var car1 = new Object();
+    car1.color = "red";
+    car1.maxSpeed = 220;
+    car1.driver = new Object();
+    car1.driver.name = "Іван Іваненко";
+    car1.driver.category = "C";
+    car1.driver.personalLimitations = "No driving at night";
+    car1.tuning = true;
+    car1.numberOfAccidents = 0;
+
+    var car2 = {
+      color: "blue",
+      maxSpeed: 180,
+      driver: {
+        name: "Kuchirka Liubomyr",
+        category: "B",
+        personalLimitations: null
+      },
+      tuning: false,
+      numberOfAccidents: 2
+    };
+
+    car1.drive = function() {
+      console.log("I am not driving at night");
+    };
+    car1.drive();
+
+    car2.drive = function() {
+      console.log("I can drive anytime");
+    };
+    car2.drive();
+
+    function Truck(color, weight, avgSpeed, brand, model) {
+      this.color = color;
+      this.weight = weight;
+      this.avgSpeed = avgSpeed;
+      this.brand = brand;
+      this.model = model;
+      
+      this.trip = function() {
+        if (!this.driver) {
+          console.log("No driver assigned");
+        } else {
+          var message = "Driver " + this.driver.name + " ";
+          message += this.driver.nightDriving ? "drives at night" : "does not drive at night";
+          message += " and has " + this.driver.experience + " years of experience";
+          console.log(message);
+        }
+      }
+    }
+
+    Truck.AssignDriver = function(truck, name, nightDriving, experience) {
+      truck.driver = {
+        name: name,
+        nightDriving: nightDriving,
+        experience: experience
+      };
+    };
+
+    var truck1 = new Truck("green", 5000, 80.5, "MAN", "TGS");
+    Truck.AssignDriver(truck1, "Kuchirka Liubomyr", true, 5);
+
+    var truck2 = new Truck("black", 6000, 75.0, "Scania", "R500");
+    Truck.AssignDriver(truck2, "Kuchirka Liubomyr", false, 3);
+
+    truck1.trip();
+    truck2.trip();
+
+
+    class Square {
+      constructor(a) {
+        this.a = a;
+      }
+      
+      static help() {
+        console.log("Square: A four-sided polygon with equal sides. Property: side length 'a'.");
+      }
+      
+      length() {
+        console.log("Perimeter: " + (4 * this.a));
+      }
+      
+      square() {
+        console.log("Area: " + (this.a * this.a));
+      }
+      
+      info() {
+        console.log("Square Info:");
+        console.log("Side length: " + this.a);
+        console.log("Angles: 90° each");
+        console.log("Perimeter: " + (4 * this.a));
+        console.log("Area: " + (this.a * this.a));
+      }
+    }
+
+    class Rectangle extends Square {
+      constructor(a, b) {
+        super(a);
+        this.b = b;
+      }
+      
+      static help() {
+        console.log("Rectangle: A quadrilateral with two pairs of parallel sides. Properties: length 'a' and width 'b'.");
+      }
+      
+      length() {
+        console.log("Perimeter: " + (2 * (this.a + this.b)));
+      }
+      
+      square() {
+        console.log("Area: " + (this.a * this.b));
+      }
+      
+      info() {
+        console.log("Rectangle Info:");
+        console.log("Length: " + this.a + ", Width: " + this.b);
+        console.log("Angles: 90° each");
+        console.log("Perimeter: " + (2 * (this.a + this.b)));
+        console.log("Area: " + (this.a * this.b));
+      }
+    }
+
+    class Rhombus extends Square {
+      constructor(a, alpha, beta) {
+        super(a);
+        this.alpha = alpha;
+        this.beta = beta;
+      }
+      
+      static help() {
+        console.log("Rhombus: A quadrilateral with all sides equal. Properties: side 'a', and angles 'alpha' (obtuse) and 'beta' (acute).");
+      }
+      
+      length() {
+        console.log("Perimeter: " + (4 * this.a));
+      }
+      
+      square() {
+        let alphaRadians = this.alpha * (Math.PI / 180);
+        console.log("Area: " + (this.a * this.a * Math.sin(alphaRadians)));
+      }
+      
+      info() {
+        console.log("Rhombus Info:");
+        console.log("Side: " + this.a);
+        console.log("Angles: alpha = " + this.alpha + "°, beta = " + this.beta + "°");
+        console.log("Perimeter: " + (4 * this.a));
+        let alphaRadians = this.alpha * (Math.PI / 180);
+        console.log("Area: " + (this.a * this.a * Math.sin(alphaRadians)));
+      }
+    }
+
+    class Parallelogram extends Rectangle {
+      constructor(a, b, alpha, beta) {
+        super(a, b);
+        this.alpha = alpha;
+        this.beta = beta;
+      }
+      
+      static help() {
+        console.log("Parallelogram: A quadrilateral with opposite sides parallel. Properties: sides 'a' and 'b', angles 'alpha' (obtuse) and 'beta' (acute).");
+      }
+      
+      length() {
+        console.log("Perimeter: " + (2 * (this.a + this.b)));
+      }
+      
+      square() {
+        let alphaRadians = this.alpha * (Math.PI / 180);
+        console.log("Area: " + (this.a * this.b * Math.sin(alphaRadians)));
+      }
+      
+      info() {
+        console.log("Parallelogram Info:");
+        console.log("Sides: a = " + this.a + ", b = " + this.b);
+        console.log("Angles: alpha = " + this.alpha + "°, beta = " + this.beta + "°");
+        console.log("Perimeter: " + (2 * (this.a + this.b)));
+        let alphaRadians = this.alpha * (Math.PI / 180);
+        console.log("Area: " + (this.a * this.b * Math.sin(alphaRadians)));
+      }
+    }
+
+    class RectangleWithAccessors extends Rectangle {
+      constructor(a, b) {
+        super(a, b);
+      }
+      
+      get lengthValue() {
+        return this.a;
+      }
+      
+      set lengthValue(newA) {
+        this.a = newA;
+      }
+      
+      get width() {
+        return this.b;
+      }
+      
+      set width(newB) {
+        this.b = newB;
+      }
+    }
+
+    Square.help();
+    Rectangle.help();
+    Rhombus.help();
+    Parallelogram.help();
+
+    let squareObj = new Square(5);
+    let rectangleObj = new Rectangle(6, 3);
+    let rhombusObj = new Rhombus(4, 120, 60);
+    let parallelogramObj = new Parallelogram(7, 4, 110, 70);
+
+    squareObj.info();
+    rectangleObj.info();
+    rhombusObj.info();
+    parallelogramObj.info();
+
+    function Triangular(a = 3, b = 4, c = 5) {
+      return { a, b, c };
+    }
+
+    let triangle1 = Triangular();
+    let triangle2 = Triangular(5, 12, 13);
+    let triangle3 = Triangular(7, 24, 25);
+    console.log("Triangle 1:", triangle1);
+    console.log("Triangle 2:", triangle2);
+    console.log("Triangle 3:", triangle3);
+
+    function PiMultiplier(multiplier) {
+      return function() {
+        return Math.PI * multiplier;
+      };
+    }
+
+    let multiplyPiBy2 = PiMultiplier(2);
+    let multiplyPiBy3over2 = PiMultiplier(3 / 2);
+    let dividePiBy2 = PiMultiplier(1 / 2); // еквівалентно діленню π на 2
+    console.log("π * 2 =", multiplyPiBy2());
+    console.log("π * (3/2) =", multiplyPiBy3over2());
+    console.log("π / 2 =", dividePiBy2());
+
+    function Painter(color) {
+      return function(obj) {
+        if (obj && obj.type) {
+          console.log(color + " " + obj.type);
+        } else {
+          console.log("No 'type' property occurred!");
+        }
+      };
+    }
+
+    let PaintBlue = Painter("Blue");
+    let PaintRed = Painter("Red");
+    let PaintYellow = Painter("Yellow");
+
+    let testObj1 = { maxSpeed: 280, type: "Truck" };
+    let testObj2 = { maxSpeed: 180, type: "Sportcar", avgSpeed: 90 };
+    let testObj3 = { color: "purple", loadCapacity: 2400, isCar: true };
+
+    PaintBlue(testObj1);
+    PaintRed(testObj2);
+    PaintYellow(testObj3);
+  </script>
+</body>
+</html>
