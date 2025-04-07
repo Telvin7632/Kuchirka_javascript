@@ -1,8 +1,4 @@
-// sortingLibrary.js
-
-// Головний об'єкт бібліотеки
 const SortingLibrary = {
-  // Допоміжна функція для перевірки розрідженості масиву
   checkForUndefined: function(arr) {
     let hasUndefined = false;
     for (let i = 0; i < arr.length; i++) {
@@ -22,7 +18,6 @@ const SortingLibrary = {
     }
   },
 
-  // Загальний компаратор в залежності від порядку
   comparator: function(order) {
     if (order === "desc") {
       return function(a, b) {
@@ -35,7 +30,6 @@ const SortingLibrary = {
     }
   },
 
-  // 1. Сортування обміном (бульбашкове сортування)
   bubbleSort: function(arr, order = "asc") {
     this.checkForUndefined(arr);
     const comp = this.comparator(order);
@@ -56,7 +50,6 @@ const SortingLibrary = {
     return a;
   },
 
-  // 2. Сортування вибором (пошук мінімального елемента)
   selectionSort: function(arr, order = "asc") {
     this.checkForUndefined(arr);
     const comp = this.comparator(order);
@@ -81,7 +74,6 @@ const SortingLibrary = {
     return a;
   },
 
-  // 3. Сортування вставками
   insertionSort: function(arr, order = "asc") {
     this.checkForUndefined(arr);
     const comp = this.comparator(order);
@@ -109,7 +101,6 @@ const SortingLibrary = {
     return a;
   },
 
-  // 4. Сортування Шелла
   shellSort: function(arr, order = "asc") {
     this.checkForUndefined(arr);
     const comp = this.comparator(order);
@@ -139,7 +130,6 @@ const SortingLibrary = {
     return a;
   },
 
-  // 5. Сортування Хоара (швидке сортування)
   quickSort: function(arr, order = "asc") {
     this.checkForUndefined(arr);
     const comp = this.comparator(order);
@@ -177,7 +167,6 @@ const SortingLibrary = {
   }
 };
 
-// Для доступу глобально, якщо потрібно
 if (typeof window !== "undefined") {
   window.SortingLibrary = SortingLibrary;
 }

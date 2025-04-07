@@ -28,10 +28,8 @@
   <h2>Розріджений масив (з undefined-елементами, не менше 100 елементів)</h2>
   <div id="sparseResult"></div>
 
-  <!-- Підключення бібліотеки -->
   <script src="sortingLibrary.js"></script>
   <script>
-    // Функція для генерації нерозрідженого масиву з 100 випадкових чисел
     function generateNonSparseArray() {
       const arr = [];
       for (let i = 0; i < 100; i++) {
@@ -40,8 +38,6 @@
       return arr;
     }
 
-    // Функція для генерації розрідженого масиву з 100 елементів,
-    // де деякі індекси залишаються невизначеними
     function generateSparseArray() {
       const arr = new Array(100);
       for (let i = 0; i < 100; i++) {
@@ -52,13 +48,11 @@
       return arr;
     }
 
-    // Демонстрація роботи функцій бібліотеки для заданого масиву
     function testSorting(arr, containerId, description) {
       const container = document.getElementById(containerId);
       container.innerHTML += `<h3>${description}</h3>`;
       container.innerHTML += `<p>Оригінальний масив: ${JSON.stringify(arr)}</p>`;
 
-      // Отримуємо копії масиву для кожного методу, щоб починати з однакового набору
       const methods = [
         {name: "BubbleSort", func: SortingLibrary.bubbleSort},
         {name: "SelectionSort", func: SortingLibrary.selectionSort},
@@ -68,17 +62,14 @@
       ];
 
       methods.forEach(method => {
-        // Прив'язуємо контекст до SortingLibrary
         const sorted = method.func.bind(SortingLibrary)(arr, "asc");
         container.innerHTML += `<p><strong>${method.name} (за зростанням):</strong> ${JSON.stringify(sorted)}</p>`;
       });
     }
 
-    // Генеруємо і тестуємо нерозріджений масив
     const nonSparseArray = generateNonSparseArray();
     testSorting(nonSparseArray, "nonSparseResult", "Нерозріджений масив");
 
-    // Генеруємо і тестуємо розріджений масив
     const sparseArray = generateSparseArray();
     testSorting(sparseArray, "sparseResult", "Розріджений масив");
   </script>
