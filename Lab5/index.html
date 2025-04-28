@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Гра-Клікер</title>
+  <style>
+    body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; margin: 20px; }
+    .hidden { display: none; }
+    #game-area { position: relative; width: 600px; height: 400px; border: 2px solid #333; margin-top: 20px; }
+    #square { position: absolute; cursor: pointer; }
+    #controls { margin-bottom: 20px; }
+    select, button { font-size: 1rem; padding: 5px; margin-right: 10px; }
+    #status { margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Гра-Клікер</h1>
+  <div id="start-screen">
+    <div id="controls">
+      <label>Рівень складності:
+        <select id="difficulty">
+          <option value="" disabled selected>Виберіть рівень</option>
+          <option value="easy">Новачок 🌱</option>
+          <option value="medium">Профі 🚀</option>
+          <option value="hard">Шалений ⚡</option>
+        </select>
+      </label>
+      <label>Колір:
+        <select id="color">
+          <option value="" disabled selected>Виберіть колір</option>
+          <option value="red">Червоний</option>
+          <option value="green">Зелений</option>
+          <option value="blue">Синій</option>
+          <option value="purple">Фіолетовий</option>
+        </select>
+      </label>
+      <button id="start-btn">Start</button>
+    </div>
+  </div>
+  <div id="game-screen" class="hidden">
+    <div id="status">
+      Час: <span id="timer">0</span> сек | Очки: <span id="score">0</span>
+    </div>
+    <div id="game-area">
+      <div id="square"></div>
+    </div>
+  </div>
+  <script>
+    const config = {
+      easy:   { time: 5, size: 80, maxStep: 150 },   // Затримка 5 сек на клік
+      medium: { time: 3, size: 60, maxStep: 300 },   // 3 сек на клік
+      hard:   { time: 2, size: 40, maxStep: 600 },   // 2 сек на клік
+    };
+    const startBtn    = document.getElementById('start-btn');
+    const diffSelect  = document.getElementById('difficulty');
+    const colorSelect = document.getElementById('color');
+    const startScreen = document.getElementById('start-screen');
+    const gameScreen  = document.getElementById('game-screen');
+    const timerEl     = document.getElementById('timer');
+    const scoreEl     = document.getElementById('score');
+    const gameArea    = document.getElementById('game-area');
+    const square      = document.getElementById('square');
+    let score = 0, timeLeft = 0, timerInterval, currentConfig, gameActive = false;
+
+    function startGame() {
+      const diff  = diffSelect.value;
+      const color = colorSelect.value;
+      if (!diff || !color) {
+        alert('Будь ласка, виберіть рівень складності та колір.');
+        return;
+      }
+      currentConfig = config[diff];
+      timeLeft = currentConfig.time;
+      score    = 0;
+      scoreEl.textContent = score;
+      timerEl.textContent = timeLeft;
+      square.style.width  = currentConfig.size + 'px';
+      square.style.height = currentConfig.size + 'px';
+      square.style.backgroundColor = color;
+      startScreen.classList.add('hidden');
+      gameScreen.classList.remove('hidden');
+      startBtn.disabled = true;
+      gameActive = true;
+      placeSquareRandom();
+      square.addEventListener('click', clickHandler);
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    function updateTimer() {
+      timeLeft--;
+      timerEl.textContent = timeLeft;
+      if (timeLeft <= 0) endGame();
+    }
+
+    function clickHandler() {
+      if (!gameActive) return;
+      score++;
+      scoreEl.textContent = score;
+      // Оновлюємо таймер після кожного кліка
+      timeLeft = currentConfig.time;
+      timerEl.textContent = timeLeft;
+      moveSquare();
+    }
+
+    function placeSquareRandom() {
+      const { width, height } = gameArea.getBoundingClientRect();
+      const x = Math.random() * (width - currentConfig.size);
+      const y = Math.random() * (height - currentConfig.size);
+      square.style.left = x + 'px';
+      square.style.top  = y + 'px';
+    }
+
+    function moveSquare() {
+      const { width, height } = gameArea.getBoundingClientRect();
+      const step = currentConfig.maxStep;
+      let x = parseFloat(square.style.left) + (Math.random() * 2 - 1) * step;
+      let y = parseFloat(square.style.top)  + (Math.random() * 2 - 1) * step;
+      x = Math.max(0, Math.min(x, width  - currentConfig.size));
+      y = Math.max(0, Math.min(y, height - currentConfig.size));
+      square.style.left = x + 'px';
+      square.style.top  = y + 'px';
+    }
+
+    function endGame() {
+      gameActive = false;
+      clearInterval(timerInterval);
+      square.removeEventListener('click', clickHandler);
+      alert('Гру завершено! Ваш результат: ' + score + ' очок.');
+      startBtn.disabled = false;
+      startScreen.classList.remove('hidden');
+    }
+
+    startBtn.addEventListener('click', startGame);
+  </script>
+</body>
+</html>
