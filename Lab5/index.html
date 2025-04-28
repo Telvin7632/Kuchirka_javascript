@@ -48,9 +48,9 @@
   </div>
   <script>
     const config = {
-      easy:   { time: 5, size: 80, maxStep: 150 },   // Затримка 5 сек на клік
-      medium: { time: 3, size: 60, maxStep: 300 },   // 3 сек на клік
-      hard:   { time: 2, size: 40, maxStep: 600 },   // 2 сек на клік
+      easy:   { time: 5, size: 80, maxStep: 150 },
+      medium: { time: 3, size: 60, maxStep: 300 },
+      hard:   { time: 2, size: 40, maxStep: 600 },
     };
     const startBtn    = document.getElementById('start-btn');
     const diffSelect  = document.getElementById('difficulty');
@@ -97,7 +97,6 @@
       if (!gameActive) return;
       score++;
       scoreEl.textContent = score;
-      // Оновлюємо таймер після кожного кліка
       timeLeft = currentConfig.time;
       timerEl.textContent = timeLeft;
       moveSquare();
