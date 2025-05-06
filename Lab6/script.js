@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const newGameBtn   = document.getElementById("new-game");
     const restartBtn   = document.getElementById("restart");
   
-    // Завантажуємо конфіг без автоматичного старту
     fetch("puzzles.json")
       .then(res => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -21,14 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         puzzles = data.puzzles;
         target  = data.target;
-        // чекаємо, поки користувач натисне "Розпочати гру"
       })
       .catch(err => {
         console.error("Не вдалося завантажити puzzles.json:", err);
         alert("Помилка завантаження даних гри. Запустіть локальний сервер.");
       });
   
-    // Старт гри: приховуємо екран і відразу генеруємо поле
     startBtn.addEventListener("click", () => {
       startScreen.classList.add("hidden");
       gameEl.classList.remove("hidden");
@@ -98,7 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
       toggle(r, c);
       const post = current.flat().join("");
   
-      // подвійний клік (повернення в попередній стан)
       if (history.length > 1 && post === history[history.length - 2]) {
         history.pop();
         moveCount = Math.max(0, moveCount - 1);

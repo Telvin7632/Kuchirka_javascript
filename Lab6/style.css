@@ -1,9 +1,7 @@
-/* Додаємо універсальний клас для приховування */
 .hidden {
     display: none !important;
   }
   
-/* Загальний стиль сторінки */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -35,7 +33,6 @@
     background-color: #53354a;
   }
   
-  /* Екран перед грою */
   #start-screen {
     text-align: center;
   }
@@ -44,7 +41,6 @@
     margin-bottom: 1em;
   }
   
-  /* Контейнер гри */
   #game {
     max-width: 400px;
     width: 100%;
@@ -57,7 +53,6 @@
     margin-bottom: 0.5em;
   }
   
-  /* Контролери */
   #controls {
     display: flex;
     flex-wrap: wrap;
@@ -73,7 +68,6 @@
     font-size: 1rem;
   }
   
-  /* Сітка 5×5 */
   #grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
