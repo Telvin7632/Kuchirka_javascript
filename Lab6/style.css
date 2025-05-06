@@ -1,0 +1,100 @@
+/* Додаємо універсальний клас для приховування */
+.hidden {
+    display: none !important;
+  }
+  
+/* Загальний стиль сторінки */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Кнопка */
+  .btn {
+    background-color: #0f3460;
+    border: none;
+    padding: 0.6em 1.2em;
+    margin: 0.5em;
+    color: #e0e0e0;
+    font-size: 1rem;
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .btn:hover {
+    background-color: #53354a;
+  }
+  
+  /* Екран перед грою */
+  #start-screen {
+    text-align: center;
+  }
+  #start-screen h1 {
+    font-size: 3rem;
+    margin-bottom: 1em;
+  }
+  
+  /* Контейнер гри */
+  #game {
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+  }
+  #game.hidden {
+    display: none;
+  }
+  #game header h1 {
+    margin-bottom: 0.5em;
+  }
+  
+  /* Контролери */
+  #controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+    padding: 1em;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+  }
+  .stat {
+    margin: 0.5em 1em;
+    font-size: 1rem;
+  }
+  
+  /* Сітка 5×5 */
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.4em;
+  }
+  .cell {
+    width: 100%;
+    padding-top: 100%; /* квадрат */
+    position: relative;
+    background-color: #333;
+    border-radius: 0.3em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .cell.on {
+    background-color: #ffdd57;
+  }
+  .cell::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+  }
+  
