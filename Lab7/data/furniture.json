@@ -1,0 +1,45 @@
+{
+  "categoryName": "Furniture",
+  "items": [
+    {
+      "id": 1,
+      "name": "Wooden Chair",
+      "shortname": "wooden_chair",
+      "description": "Стілець із дерева.",
+      "price": "45 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 2,
+      "name": "Dining Table",
+      "shortname": "dining_table",
+      "description": "Стіл для 6 осіб.",
+      "price": "120 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 3,
+      "name": "Office Desk",
+      "shortname": "office_desk",
+      "description": "Письмовий стіл із шухлядами.",
+      "price": "85 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 4,
+      "name": "Bookshelf",
+      "shortname": "bookshelf",
+      "description": "Стелаж для книг та декору.",
+      "price": "60 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 5,
+      "name": "Armchair",
+      "shortname": "armchair",
+      "description": "Комфортне крісло з підлокітниками.",
+      "price": "70 USD",
+      "image": "https://place-hold.it/150x150"
+    }
+  ]
+}

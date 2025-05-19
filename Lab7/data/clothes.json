@@ -1,0 +1,45 @@
+{
+  "categoryName": "Clothes",
+  "items": [
+    {
+      "id": 1,
+      "name": "T-Shirt",
+      "shortname": "tshirt",
+      "description": "Бавовняна футболка.",
+      "price": "20 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 2,
+      "name": "Jeans",
+      "shortname": "jeans",
+      "description": "Класичні джинси.",
+      "price": "40 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 3,
+      "name": "Hoodie",
+      "shortname": "hoodie",
+      "description": "Кофта з капюшоном.",
+      "price": "35 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 4,
+      "name": "Sneakers",
+      "shortname": "sneakers",
+      "description": "Спортивне взуття на кожен день.",
+      "price": "55 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 5,
+      "name": "Jacket",
+      "shortname": "jacket",
+      "description": "Легка куртка.",
+      "price": "65 USD",
+      "image": "https://place-hold.it/150x150"
+    }
+  ]
+}

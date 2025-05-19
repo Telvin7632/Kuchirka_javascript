@@ -1,0 +1,45 @@
+{
+  "categoryName": "Electronics",
+  "items": [
+    {
+      "id": 1,
+      "name": "Smartphone X1",
+      "shortname": "smartphone_x1",
+      "description": "Новітній смартфон із великим екраном та подвійною камерою.",
+      "price": "499 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 2,
+      "name": "Wireless Headphones",
+      "shortname": "wireless_headphones",
+      "description": "Бездротові навушники з активним шумозаглушенням.",
+      "price": "199 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 3,
+      "name": "Smartwatch Pro",
+      "shortname": "smartwatch_pro",
+      "description": "Смартгодинник з пульсометром та GPS.",
+      "price": "149 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 4,
+      "name": "Portable Speaker",
+      "shortname": "portable_speaker",
+      "description": "Колонка з сильним басом та водозахистом.",
+      "price": "89 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 5,
+      "name": "Drone Camera",
+      "shortname": "drone_camera",
+      "description": "Квадрокоптер із 4K та стабілізацією.",
+      "price": "299 USD",
+      "image": "https://place-hold.it/150x150"
+    }
+  ]
+}

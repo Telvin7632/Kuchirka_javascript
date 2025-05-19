@@ -1,0 +1,45 @@
+{
+  "categoryName": "Books",
+  "items": [
+    {
+      "id": 1,
+      "name": "The Great Gatsby",
+      "shortname": "great_gatsby",
+      "description": "Класичний роман.",
+      "price": "15 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 2,
+      "name": "1984",
+      "shortname": "nineteen_eighty_four",
+      "description": "Антиутопія Дж. Орвелла.",
+      "price": "12 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 3,
+      "name": "Clean Code",
+      "shortname": "clean_code",
+      "description": "Посібник з читабельного програмування.",
+      "price": "32 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 4,
+      "name": "JavaScript: The Good Parts",
+      "shortname": "js_good_parts",
+      "description": "Книга про особливості JavaScript.",
+      "price": "25 USD",
+      "image": "https://place-hold.it/150x150"
+    },
+    {
+      "id": 5,
+      "name": "You Don’t Know JS",
+      "shortname": "you_dont_know_js",
+      "description": "Глибоке занурення у JavaScript.",
+      "price": "28 USD",
+      "image": "https://place-hold.it/150x150"
+    }
+  ]
+}
