@@ -1,9 +1,7 @@
-// Гамбургер-меню
 document.getElementById("hamburger").onclick = () => {
   document.getElementById("menu").classList.toggle("show");
 };
 
-// Карусель
 const slidesContainer = document.querySelector(".slides");
 const dots = Array.from(document.querySelectorAll(".dot"));
 let currentIndex = 0;
@@ -27,11 +25,9 @@ dots.forEach((dot, i) => dot.onclick = () => {
   updateCarousel();
 });
 
-// Автопрокрутка
 setInterval(() => {
   currentIndex = (currentIndex + 1) % total;
   updateCarousel();
 }, 4000);
 
-// Ініціалізація
 updateCarousel();
