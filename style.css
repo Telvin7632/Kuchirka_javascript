@@ -1,0 +1,99 @@
+/* Базові стилі */
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+nav li {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+#hamburger {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 10px;
+}
+
+/* Карусель */
+.carousel {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+.slides-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+.slides {
+  display: flex;
+  transition: transform 0.8s ease; /* плавний рух */
+}
+.slide {
+  flex: 0 0 100%;
+}
+.slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Кнопки */
+button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.7);
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+#prev { left: 10px; }
+#next { right: 10px; }
+
+/* Індикатори */
+.dots {
+  text-align: center;
+  margin-top: 10px;
+}
+.dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 5px;
+  background-color: gray;
+  display: inline-block;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.dot.active {
+  background-color: black;
+}
+
+/* Large / Medium-only секції */
+.large-only, .medium-only {
+  display: none;
+  text-align: center;
+  margin: 20px 0;
+}
+.large-only img,
+.medium-only img {
+  margin: 0 10px;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  #menu { display: flex !important; }
+  .large-only { display: block; }
+}
+@media (max-width: 767px) {
+  #hamburger { display: block; }
+  #menu { display: none; flex-direction: column; }
+  #menu.show { display: flex; }
+  .medium-only { display: block; }
+}
