@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Лабораторна робота №2: ООП у JavaScript</title>
+</head>
+<body>
+  <h1>Лабораторна робота №2: ООП у JavaScript</h1>
+  <p>Відкрийте консоль браузера для перегляду результатів.</p>
+  <script>
+    let car1 = new Object();
+    car1.color = 'red';
+    car1.maxSpeed = 200;
+    car1.driver = { 
+      name: 'Любомир Кучірка', category: 'C', personalLimitations: 'No driving at night' 
+    };
+    car1.tuning = true;
+    car1.numberOfAccidents = 0;
+
+    let car2 = {
+      color: 'blue',
+      maxSpeed: 150,
+      driver: { 
+        name: 'Любомир Кучірка', category: 'B', personalLimitations: null 
+      },
+      tuning: false,
+      numberOfAccidents: 2
+    };
+
+    car1.drive = function() { console.log('I am not driving at night'); };
+    car2.drive = function() { console.log('I can drive anytime'); };
+    car1.drive();
+    car2.drive();
+
+    function Truck(color, weight, avgSpeed, brand, model) {
+      this.color = color;
+      this.weight = weight;
+      this.avgSpeed = avgSpeed;
+      this.brand = brand;
+      this.model = model;
+    }
+    Truck.prototype.assignDriver = function(name, nightDriving, experience) {
+      this.driver = { name, nightDriving, experience };
+    };
+    Truck.prototype.trip = function() {
+      if (!this.driver) {
+        console.log('No driver assigned');
+      } else {
+        const d = this.driver;
+        console.log(
+          `Driver ${d.name} ` +
+          (d.nightDriving ? 'drives at night' : 'does not drive at night') +
+          ` and has ${d.experience} years of experience`
+        );
+      }
+    };
+
+    let truck1 = new Truck('green', 5000, 80.5, 'Volvo', 'FH16');
+    let truck2 = new Truck('white', 4500, 75.0, 'Scania', 'R500');
+    truck1.assignDriver('Любомир Кучірка', true, 10);
+    truck2.assignDriver('Любомир Кучірка', false, 5);
+    truck1.trip();
+    truck2.trip();
+
+    class Square {
+      constructor(a) { this.a = a; }
+      static help() { console.log('Square: чотири рівні сторони, кути 90°'); }
+      length() { console.log(`Perimeter: ${4 * this.a}`); }
+      square() { console.log(`Area: ${this.a * this.a}`); }
+      info() {
+        console.log(`Sides: ${this.a}, angles: 90°,90°,90°,90°; Perimeter: ${4 * this.a}; Area: ${this.a * this.a}`);
+      }
+    }
+
+    class Rectangle extends Square {
+      constructor(a, b) { super(a); this.b = b; }
+      static help() { console.log('Rectangle: дві пари рівних сторін, кути 90°'); }
+      length() { console.log(`Perimeter: ${2*(this.a + this.b)}`); }
+      square() { console.log(`Area: ${this.a * this.b}`); }
+      info() {
+        console.log(`Sides: ${this.a},${this.b},${this.a},${this.b}; angles: 90°×4; Perimeter: ${2*(this.a + this.b)}; Area: ${this.a * this.b}`);
+      }
+    }
+
+    class Rhombus extends Square {
+      constructor(a, alpha, beta) { super(a); this.alpha = alpha; this.beta = beta; }
+      static help() { console.log('Rhombus: чотири рівні сторони, протилежні кути рівні'); }
+      length() { console.log(`Perimeter: ${4 * this.a}`); }
+      square() {
+        console.log(`Area: ${this.a * this.a * Math.sin(this.alpha * Math.PI/180)}`);
+      }
+      info() {
+        console.log(`Sides: ${this.a}×4; angles: ${this.alpha},${this.beta},${this.alpha},${this.beta}; Perimeter: ${4 * this.a}; Area: ${this.a * this.a * Math.sin(this.alpha * Math.PI/180)}`);
+      }
+    }
+
+    class Parallelogram extends Rhombus {
+      constructor(a, b, alpha, beta) { super(a, alpha, beta); this.b = b; }
+      static help() { console.log('Parallelogram: дві пари паралельних сторін'); }
+      length() { console.log(`Perimeter: ${2*(this.a + this.b)}`); }
+      square() {
+        console.log(`Area: ${this.a * this.b * Math.sin(this.alpha * Math.PI/180)}`);
+      }
+      info() {
+        console.log(`Sides: ${this.a},${this.b},${this.a},${this.b}; angles: ${this.alpha},${this.beta},${this.alpha},${this.beta}; Perimeter: ${2*(this.a + this.b)}; Area: ${this.a * this.b * Math.sin(this.alpha * Math.PI/180)}`);
+      }
+    }
+
+    Object.defineProperties(Rectangle.prototype, {
+      a: {
+        get() { return this._a; },
+        set(val) { this._a = val; }
+      },
+      b: {
+        get() { return this._b; },
+        set(val) { this._b = val; }
+      }
+    });
+
+    Square.help(); let sq = new Square(5); sq.info();
+    Rectangle.help(); let rect = new Rectangle(4, 6); rect.info();
+    Rhombus.help(); let rh = new Rhombus(3, 120, 60); rh.info();
+    Parallelogram.help(); let par = new Parallelogram(4, 5, 110, 70); par.info();
+
+    function Triangular(a = 3, b = 4, c = 5) {
+      return { a, b, c };
+    }
+    console.log(Triangular());
+    console.log(Triangular(5, 5, 5));
+    console.log(Triangular(2, 3, 4));
+
+    function PiMultiplier(n) {
+      return () => Math.PI * n;
+    }
+    const mul2 = PiMultiplier(2);
+    const mul32 = PiMultiplier(3/2);
+    const div2 = PiMultiplier(1/2);
+    console.log(mul2(), mul32(), div2());
+
+    function Painter(color) {
+      return (obj) => {
+        console.log(obj.type 
+          ? `${color}: ${obj.type}` 
+          : "No ‘type’ property occurred!"
+        );
+      };
+    }
+    const PaintBlue = Painter('blue');
+    const PaintRed = Painter('red');
+    const PaintYellow = Painter('yellow');
+    const obj1 = { maxSpeed:280, type:'Truck' };
+    const obj2 = { maxSpeed:180, type:'Sportcar' };
+    const obj3 = { avgSpeed:90, color:'purple', loadCapacity:2400, isCar:true };
+    PaintBlue(obj1);
+    PaintRed(obj2);
+    PaintYellow(obj3);
+  </script>
+</body>
+</html>

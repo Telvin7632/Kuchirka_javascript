@@ -2,76 +2,38 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <title>Демонстрація сортування JS-бібліотеки</title>
+  <title>Лабораторна робота №4: Розробка бібліотек у JavaScript</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    h2 {
-      color: #333;
-    }
-    pre {
-      background: #f5f5f5;
-      padding: 10px;
-      border: 1px solid #ccc;
-      overflow-x: auto;
-    }
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { margin-bottom: 0.5em; }
+    pre { background: #f4f4f4; padding: 10px; overflow-x: auto; }
   </style>
 </head>
 <body>
-  <h1>Демонстрація роботи JS-бібліотеки сортування</h1>
-  
-  <h2>Нерозріджений масив (не менше 100 елементів)</h2>
-  <div id="nonSparseResult"></div>
-  
-  <h2>Розріджений масив (з undefined-елементами, не менше 100 елементів)</h2>
-  <div id="sparseResult"></div>
+  <h1>Демонстрація роботи бібліотеки сортування</h1>
+  <p>Відкрийте консоль браузера (F12), щоб побачити логи виконання.</p>
 
-  <script src="sortingLibrary.js"></script>
+  <script src="sortLib.js"></script>
   <script>
-    function generateNonSparseArray() {
-      const arr = [];
-      for (let i = 0; i < 100; i++) {
-        arr.push(Math.floor(Math.random() * 1000));
-      }
-      return arr;
-    }
+    const arr = Array.from({length: 100}, () => Math.floor(Math.random() * 1000));
+    console.log('⭐ Нерозріджений масив:', arr.slice());
 
-    function generateSparseArray() {
-      const arr = new Array(100);
-      for (let i = 0; i < 100; i++) {
-        if (i % 3 !== 0) {
-          arr[i] = Math.floor(Math.random() * 1000);
-        }
-      }
-      return arr;
-    }
+    sortLib.exchangeSort(arr.slice(), true);
+    sortLib.selectionSort(arr.slice(), true);
+    sortLib.insertionSort(arr.slice(), true);
+    sortLib.shellSort(arr.slice(), true);
+    sortLib.quickSort(arr.slice(), true);
 
-    function testSorting(arr, containerId, description) {
-      const container = document.getElementById(containerId);
-      container.innerHTML += `<h3>${description}</h3>`;
-      container.innerHTML += `<p>Оригінальний масив: ${JSON.stringify(arr)}</p>`;
+    const sparse = arr.slice();
+    sparse[10] = undefined;
+    sparse[50] = undefined;
+    console.log('⭐ Розріджений масив:', sparse);
 
-      const methods = [
-        {name: "BubbleSort", func: SortingLibrary.bubbleSort},
-        {name: "SelectionSort", func: SortingLibrary.selectionSort},
-        {name: "InsertionSort", func: SortingLibrary.insertionSort},
-        {name: "ShellSort", func: SortingLibrary.shellSort},
-        {name: "QuickSort", func: SortingLibrary.quickSort}
-      ];
-
-      methods.forEach(method => {
-        const sorted = method.func.bind(SortingLibrary)(arr, "asc");
-        container.innerHTML += `<p><strong>${method.name} (за зростанням):</strong> ${JSON.stringify(sorted)}</p>`;
-      });
-    }
-
-    const nonSparseArray = generateNonSparseArray();
-    testSorting(nonSparseArray, "nonSparseResult", "Нерозріджений масив");
-
-    const sparseArray = generateSparseArray();
-    testSorting(sparseArray, "sparseResult", "Розріджений масив");
+    sortLib.exchangeSort(sparse.slice(), false);
+    sortLib.selectionSort(sparse.slice(), false);
+    sortLib.insertionSort(sparse.slice(), false);
+    sortLib.shellSort(sparse.slice(), false);
+    sortLib.quickSort(sparse.slice(), false);
   </script>
 </body>
 </html>
